@@ -1,10 +1,10 @@
 package com.skilldistillery.jets.entities;
 
 public abstract class Jet {
-	private String model;
-	private int speed;
-	private int range;
-	private double price;
+	protected String model;
+	protected int speed;
+	protected int range;
+	protected double price;
 	
 	public Jet() {}
 	
