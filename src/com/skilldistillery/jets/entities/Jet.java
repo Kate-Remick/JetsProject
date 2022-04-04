@@ -14,6 +14,12 @@ public abstract class Jet {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Model: " + model + ".";
+	}
+
+
 	public void setPrice(double price) {
 		this.price = price;
 	}

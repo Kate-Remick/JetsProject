@@ -11,10 +11,11 @@ public class AirField {
 	private List<Jet> fleet;
 
 	public AirField(String file) {
+		System.out.println("Check 1");
 		fleet = new ArrayList<Jet>();
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			String line = br.readLine();
-			while (line != null) {
+			String line = "";
+			while ((line = br.readLine()) != null) {
 				String[] jetData = line.split(",");
 				switch (jetData[0]) {
 				case "FighterJet":
@@ -40,9 +41,23 @@ public class AirField {
 			e.printStackTrace();
 		}
 	}
-	public void addJet() {
-		this.fleet.add(null);
 
+	public void addJet(int type, String model, int speed, int range, double price, int specialization) {
+		switch(type) {
+		case 1:
+			this.fleet.add(new PassengerJet(model, speed, range, price, specialization));
+			break;
+		case 2:
+			this.fleet.add(new CargoJet(model, speed, range, price, specialization));
+			break;
+		case 3:
+			this.fleet.add(new FighterJet(model, speed, range, price, specialization));
+			break;
+		default:
+			this.fleet.add(new JetImplement());
+			break;
+			
+	}
 	}
 
 	public void flyAllJets() {
@@ -50,53 +65,92 @@ public class AirField {
 			this.fleet.get(i).fly();
 		}
 	}
+
 	@Override
 	public String toString() {
-		return "AirField [fleet=" + fleet + "]";
+		return "AirField [fleet=" + this.fleet + "]";
 	}
+
 	public void fastestJet() {
 		int fastestSpeed = 0;
 		int fastestIndex = 0;
-		for(int i  =0; i< fleet.size(); i++) {
-			if(this.fleet.get(i).getSpeed() > fastestSpeed) {
+		for (int i = 0; i < fleet.size(); i++) {
+			if (this.fleet.get(i).getSpeed() > fastestSpeed) {
 				fastestSpeed = this.fleet.get(i).getSpeed();
 				fastestIndex = i;
 			}
-			
+
 		}
-		System.out.println("The fastest jet in the fleet is a " + this.fleet.get(fastestIndex).getModel() + ", with a top speed of " + fleet.get(fastestIndex).getSpeed() + "mph");
+		System.out.println("The fastest jet in the fleet is a " + this.fleet.get(fastestIndex).getModel()
+				+ ", with a top speed of " + fleet.get(fastestIndex).getSpeed() + "mph");
 	}
+
 	public void longestRange() {
 		int longestRange = 0;
 		int longestIdx = 0;
-		for(int i  =0; i< fleet.size(); i++) {
-			if(this.fleet.get(i).getSpeed() > longestRange) {
+		for (int i = 0; i < fleet.size(); i++) {
+			if (this.fleet.get(i).getSpeed() > longestRange) {
 				longestRange = this.fleet.get(i).getSpeed();
 				longestIdx = i;
 			}
-			
+
 		}
-		System.out.println("The jet with the longest range in the fleet is " + this.fleet.get(longestIdx).getModel() + ", with a max range of " + fleet.get(longestRange).getRange() + " miles");
+		System.out.println("The jet with the longest range in the fleet is " + this.fleet.get(longestIdx).getModel()
+				+ ", with a max range of " + fleet.get(longestRange).getRange() + " miles");
 	}
+
 	public void loadCargo() {
 		System.out.println("Loading all cargo jets in the fleet...");
-		for( int i =0; i < fleet.size(); i ++) {
-			if(fleet.get(i) instanceof CargoJet) {
-				System.out.println(fleet.get(i).getModel() + " is loaded up with " +((CargoJet) this.fleet.get(i)).getCapacity() + "lbs of cargo, and ready to fly!");
+		for (int i = 0; i < fleet.size(); i++) {
+			if (fleet.get(i) instanceof CargoJet) {
+				System.out.println(fleet.get(i).getModel() + " is loaded up with "
+						+ ((CargoJet) this.fleet.get(i)).getCapacity() + "lbs of cargo, and ready to fly!");
 			}
 		}
 		System.out.println("All cargo jets are fully loaded.");
 	}
+
 	public ArrayList<FighterJet> dogFightMenu() {
 		System.out.println("The following jets are combat ready: ");
 		ArrayList<FighterJet> combatReady = new ArrayList<>();
 		int jetNum = 1;
-		for(Jet jet: this.fleet) {
-			if(jet instanceof FighterJet) {
-				System.out.println(jet.getModel() + ". Select " + jetNum + " to dogfight with this jet." );
+		for (Jet jet : this.fleet) {
+			if (jet instanceof FighterJet) {
+				System.out.println(jet.getModel() + ". Select " + jetNum + " to dogfight with this jet.");
 				combatReady.add((FighterJet) jet);
+				jetNum++;
 			}
 		}
 		return combatReady;
+	}
+
+	public void displayFleet() {
+		System.out.println("The airfield has the following planes:");
+		for (Jet jet : this.fleet) {
+			System.out.println(jet.toString());
+		}
+	}
+
+	public void selectAndFlyCargo(String destination, int cargo) {
+		if (cargo > this.checkCargo()) {
+			System.out.println(
+					"There are no jets in the fleet with that capacity. If you would like, you may add another jet: ...");
+		}
+		for (Jet jet : this.fleet) {
+			if ((jet instanceof CargoJet) && ((CargoJet) jet).getCapacity() > cargo) {
+				((CargoJet) jet).carryCargo(destination, cargo);
+				break;
+			}
+		}
+	}
+
+	private int checkCargo() {
+		int maxCargo = 0;
+		for (int i = 0; i < this.fleet.size(); i++) {
+			if ((this.fleet.get(i) instanceof CargoJet) && ((CargoJet) this.fleet.get(i)).getCapacity() > maxCargo) {
+				maxCargo = ((CargoJet) this.fleet.get(i)).getCapacity();
+			}
+		}
+		return maxCargo;
 	}
 }

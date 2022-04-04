@@ -20,8 +20,8 @@ public class PassengerJet extends JetImplement implements CarryPassengers {
 	}
 	@Override
 	public String toString() {
-		return "PassengerJet [passengerCapacity=" + passengerCapacity + ", model=" + model + ", speed=" + speed
-				+ ", range=" + range + ", price=" + price + "]";
+		return "Passenger Jet: " + model + ";	Number of Seats: " + passengerCapacity +  ", max speed " + speed
+				+ "mph, range =" + range + "miles, price: $" + price + ".";
 	}
 
 }

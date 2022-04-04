@@ -16,6 +16,11 @@ public class FighterJet extends JetImplement implements DogFight  {
 		System.out.println(this.model + " enters a dog fight with " + maverick.model + "...");
 		int speedDiff = this.speed - maverick.speed;
 		int rangeDiff = this.range - maverick.range;
+		if(this.model.equals("The Goose") && maverick.model.equals("The Goose")){
+			System.out.println("Hah! Just kidding.");
+			System.out.println("Geese don't fight each other....");
+			System.out.println("They fight you.");
+		}
 		if(this.model.equals("The Goose") || maverick.model.equals("The Goose")) {
 			System.out.println("Honk Honk");
 			System.out.println("M_Feathers");
@@ -58,8 +63,8 @@ public class FighterJet extends JetImplement implements DogFight  {
 	}
 	@Override
 	public String toString() {
-		return "FighterJet [gunPower=" + gunPower + ", model=" + model + ", speed=" + speed + ", range=" + range
-				+ ", price=" + price + "]";
+		return "Fighter Jet: " + model + ";	Gun Power: " + gunPower  + ", max speed is" + speed + "mph, range: " + range
+				+ "miles, price: $" + price + "";
 	}
 	
 

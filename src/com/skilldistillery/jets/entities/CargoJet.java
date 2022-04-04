@@ -12,10 +12,10 @@ public class CargoJet extends JetImplement implements CarryCargo {
 	}
 
 	@Override
-	public void carryCargo(String location, String destination, int cargo) {
-		this.fly();
+	public void carryCargo(String destination, int cargo) {
 		boolean dropChance = (Math.random() > 0.9);
-		System.out.println(this.model +  " leaves " + location + " carrying " + cargo + "lbs cargo." );
+		this.fly();
+		System.out.println(this.model +  " leaves the airport carrying " + cargo + "lbs cargo." );
 		if(dropChance) {
 			int cargoDropped = (int)(Math.random()*0.4*cargo);
 			System.out.println("Oh No! " + this.model + " has dropped " + cargoDropped +" lbs cargo...");
@@ -24,21 +24,6 @@ public class CargoJet extends JetImplement implements CarryCargo {
 		}else {
 			System.out.println(this.model +  " arrives at " + destination + " carrying " + cargo + "lbs cargo." );
 		}
-	}
-	@Override
-	public void carryCargo(int cargo) {
-		this.fly();
-		boolean dropChance = (Math.random() > 0.9);
-		System.out.println(this.model +  " leaves the airport carrying " + cargo + "lbs cargo." );
-		if(dropChance) {
-			int cargoDropped = (int)(Math.random()*0.4*cargo);
-			System.out.println("Oh No! " + this.model + " has dropped " + cargoDropped +" lbs cargo...");
-			System.out.println("I guess someone's not getting those shoes for their cat...");
-			System.out.println(this.model +  " arrives carrying " + (cargo - cargoDropped) + "lbs cargo." );
-		}else {
-			System.out.println(this.model +  " arrives carrying " + cargo + "lbs cargo." );
-		}
-		
 	}
 
 	public int getCapacity() {
@@ -53,8 +38,8 @@ public class CargoJet extends JetImplement implements CarryCargo {
 
 	@Override
 	public String toString() {
-		return "CargoJet [capacity=" + capacity + ", model=" + model + ", speed=" + speed + ", range=" + range
-				+ ", price=" + price + "]";
+		return "Cargo Jet:  " + model +";	 weight capacity: " + capacity + "lbs, max speed " + speed + "mph, range:" + range
+				+ "miles, price: $" + price + ".";
 	}
 
 }
