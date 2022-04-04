@@ -54,7 +54,7 @@ public class AirField {
 			this.fleet.add(new FighterJet(model, speed, range, price, specialization));
 			break;
 		default:
-			this.fleet.add(new JetImplement());
+			this.fleet.add(new JetImplement(model, speed, range, price));
 			break;
 			
 	}

@@ -1,5 +1,6 @@
 package com.skilldistillery.jets.app;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -128,8 +129,9 @@ public class JetsApplication {
 
 				}
 			}
-		} catch (Exception e) {
+		}catch (Exception e){
 			System.out.println("Invalid input has been entered.");
+			System.out.println("The program has encountered an error. Restart to begin again.");
 		}
 
 	}
