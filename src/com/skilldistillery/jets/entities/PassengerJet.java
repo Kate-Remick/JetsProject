@@ -32,6 +32,7 @@ public class PassengerJet extends JetImplement implements CarryPassengers {
 	public void fly() {
 		System.out.println("Birrrroooooomm");
 		System.out.println("The " + this.model + "flies");
+		System.out.println(this.model + " can continue flying for " + (this.getRange()/this.getSpeed()) + " minutes.");
 	}
 
 }

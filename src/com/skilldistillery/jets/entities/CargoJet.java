@@ -34,6 +34,7 @@ public class CargoJet extends JetImplement implements CarryCargo {
 	public void fly() {
 		System.out.println("Nyeeerrooooooh");
 		System.out.println(this.model + " begins flying ");
+		System.out.println(this.model + " can continue flying for " + (this.getRange()/this.getSpeed()) + " minutes.");
 	}
 
 	@Override

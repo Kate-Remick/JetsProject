@@ -13,6 +13,7 @@ public class JetImplement extends Jet{
 	}
 	public void fly() {
 		System.out.println("Woosh! the Jet Flies!");
+		System.out.println(this.model + " can continue flying for " + (this.getRange()/this.getSpeed()) + " minutes.");
 	}
 
 	@Override
