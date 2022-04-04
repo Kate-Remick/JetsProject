@@ -32,7 +32,7 @@ public class JetsApplication {
 		System.out.println("7) Dogfight!");
 		System.out.println("8) Add a jet to the fleet");
 		System.out.println("9) Remove a jet from the fleet");
-//		System.out.println("10) Transport passengers");
+		System.out.println("10) Transport passengers");
 		System.out.println("11) Quit");
 
 	}
@@ -100,13 +100,24 @@ public class JetsApplication {
 						int spec = kb.nextInt();
 						field.addJet(jetType, model, speed, range, price, spec);
 					}
+					System.out.println("The following jets are now in the fleet: ");
+					field.displayFleet();
 					break;
 				case 9:
 					System.out.println("Which jet would you like to remove?");
-					
+					field.displayFleet();
+					int removalIdx = kb.nextInt();
+					field.removeJet(removalIdx);
+					System.out.println("The following jets are now in the fleet: ");
+					field.displayFleet();
 					break;
 				case 10:
-					//TODO make flyl passengers
+					System.out.println("How many people will be flying?");
+					int people = kb.nextInt();
+					kb.nextLine();
+					System.out.println("Where will the people be going?");
+					destination = kb.nextLine();
+					field.selectAndFlyPassengers(destination, people);
 					break;
 				case 11:
 					System.out.println("Bye, then. Have a nice day!");
@@ -118,7 +129,7 @@ public class JetsApplication {
 				}
 			}
 		} catch (Exception e) {
-			
+			System.out.println("Invalid input has been entered.");
 		}
 
 	}

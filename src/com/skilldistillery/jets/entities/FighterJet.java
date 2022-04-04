@@ -66,6 +66,8 @@ public class FighterJet extends JetImplement implements DogFight  {
 		return "Fighter Jet: " + model + ";	Gun Power: " + gunPower  + ", max speed is" + speed + "mph, range: " + range
 				+ "miles, price: $" + price + "";
 	}
-	
-
+	public void fly(){
+		System.out.println("PSHssOOOoooooo");
+		System.out.println("The "+ this.model + " flies");
+	}
 }

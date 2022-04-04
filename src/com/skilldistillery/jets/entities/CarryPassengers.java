@@ -2,6 +2,6 @@ package com.skilldistillery.jets.entities;
 
 public interface CarryPassengers {
 	
-	public void carryPassengers();
+	public void carryPassengers(int numPassengers, String destination);
 
 }

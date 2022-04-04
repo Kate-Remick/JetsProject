@@ -58,6 +58,12 @@ public class AirField {
 			break;
 			
 	}
+		System.out.println(model + " Has been added to the fleet");
+	
+	}
+	public void removeJet(int removeIdx) {
+		String removed = this.fleet.remove(removeIdx -1).model;
+		System.out.println(removed + " has been removed from the fleet.");
 	}
 
 	public void flyAllJets() {
@@ -125,9 +131,12 @@ public class AirField {
 	}
 
 	public void displayFleet() {
+		int idx = 1;
 		System.out.println("The airfield has the following planes:");
 		for (Jet jet : this.fleet) {
+			System.out.println("Jet number: " + idx);
 			System.out.println(jet.toString());
+			idx++;
 		}
 	}
 
@@ -153,4 +162,27 @@ public class AirField {
 		}
 		return maxCargo;
 	}
+	public void selectAndFlyPassengers(String destination, int people) {
+		if (people > this.checkPassengers()) {
+			System.out.println(
+					"There are no jets in the fleet with that capacity. If you would like, you may add another jet: ...");
+		}
+		for (Jet jet : this.fleet) {
+			if ((jet instanceof PassengerJet) && ((PassengerJet) jet).getPassengerCapacity() > people) {
+				((CargoJet) jet).carryCargo(destination, people);
+				break;
+			}
+		}
+	}
+	
+	private int checkPassengers() {
+		int maxSeats = 0;
+		for (int i = 0; i < this.fleet.size(); i++) {
+			if ((this.fleet.get(i) instanceof PassengerJet) && ((PassengerJet) this.fleet.get(i)).getPassengerCapacity() > maxSeats) {
+				maxSeats = ((PassengerJet) this.fleet.get(i)).getPassengerCapacity();
+			}
+		}
+		return maxSeats;
+	}
+	
 }
