@@ -14,6 +14,11 @@ public class JetImplement extends Jet{
 	public void fly() {
 		System.out.println("Woosh! the Jet Flies!");
 	}
+
+	@Override
+	public String toString() {
+		return "JetImplement [model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + "]";
+	}
 	
 	
 

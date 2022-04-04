@@ -18,5 +18,10 @@ public class PassengerJet extends JetImplement implements CarryPassengers {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public String toString() {
+		return "PassengerJet [passengerCapacity=" + passengerCapacity + ", model=" + model + ", speed=" + speed
+				+ ", range=" + range + ", price=" + price + "]";
+	}
 
 }
