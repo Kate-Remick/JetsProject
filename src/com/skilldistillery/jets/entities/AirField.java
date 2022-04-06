@@ -96,13 +96,13 @@ public class AirField {
 		int longestIdx = 0;
 		for (int i = 0; i < fleet.size(); i++) {
 			if (this.fleet.get(i).getSpeed() > longestRange) {
-				longestRange = this.fleet.get(i).getSpeed();
+				longestRange = this.fleet.get(i).getRange();
 				longestIdx = i;
 			}
 
 		}
 		System.out.println("The jet with the longest range in the fleet is " + this.fleet.get(longestIdx).getModel()
-				+ ", with a max range of " + fleet.get(longestRange).getRange() + " miles");
+				+ ", with a max range of " + fleet.get(longestIdx).getRange() + " miles");
 	}
 
 	public void loadCargo() {

@@ -35,6 +35,7 @@ public class JetsApplication {
 		System.out.println("9) Remove a jet from the fleet");
 		System.out.println("10) Transport passengers");
 		System.out.println("11) Quit");
+		System.out.println("*---+--------+-------+---*");
 
 	}
 
